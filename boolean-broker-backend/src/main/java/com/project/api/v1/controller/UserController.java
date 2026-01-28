@@ -44,6 +44,7 @@ public class UserController {
     @APIResponse(responseCode = "201", description = "User added successfully")
     public Response register(@Valid UserRegistrationRequest request) {
         try {
+
             String verificationToken = userRegistrationService.RegisterUser(request);
 
             UserRegistrationResponse userRegistrationResponse =
