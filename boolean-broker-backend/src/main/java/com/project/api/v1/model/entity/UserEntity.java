@@ -1,13 +1,13 @@
 package com.project.api.v1.model.entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class UserEntity {
 
     private String userId;          // PK
     private String name;
     private UserType userType;    // ADMIN / BROKER / TRADER
-    private LocalDate dateOfBirth;
+    private Date dateOfBirth;
     private String email;
     private String phone;
     private String panNumber;     // nullable for ADMIN
@@ -66,11 +66,11 @@ public class UserEntity {
         this.userType = userType;
     }
 
-    public LocalDate getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

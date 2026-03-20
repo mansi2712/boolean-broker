@@ -1,4 +1,4 @@
 package com.project.api.v1.dbinterface;
 
-public class dbinterface {
+public class NomineeDetailsUpdate {
 }

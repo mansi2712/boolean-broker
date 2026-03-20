@@ -4,17 +4,26 @@ import com.project.api.v1.model.dto.UserRegistrationRequest;
 import com.project.api.v1.model.entity.UserEntity;
 import com.project.api.v1.model.entity.UserType;
 import jakarta.enterprise.context.RequestScoped;
+//import com.project.api.v1.dbinterface.DbInitialise;
+import com.project.api.v1.dbinterface.UserInformationUpdate;
 import jakarta.inject.Inject;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Base64;
+import java.sql.Date;
 
 @RequestScoped
 public class UserRegistrationService {
 
     @Inject
     OtpService otpService;
+
+//    @Inject
+//    DbInitialise dbInitialise;
+
+    @Inject
+    UserInformationUpdate userInfo;
 
     public String RegisterUser(UserRegistrationRequest userRegistrationRequest ){
 
@@ -27,6 +36,7 @@ public class UserRegistrationService {
         UserEntity userEntity = new UserEntity(name,phone,userType,panNumber);
         //UserID will be set only after successful creation of a UserEntity object
         userEntity.setUserId(userID);
+        userEntity.setDateOfBirth(Date.valueOf("1990-03-20"));
 
         //Add user to userInformation table
         addUserToDB(userEntity);
@@ -36,6 +46,8 @@ public class UserRegistrationService {
     }
 
     public void addUserToDB(UserEntity userEntity){
+//        dbInitialise.initialize();
+        userInfo.insert_user_information(userEntity);
         //SQL command to INSERT userEntity into User Information table
         System.out.println("Insert user into userInformation. Name: "+userEntity.getName()+" and userID: "+userEntity.getUserId());
     }
