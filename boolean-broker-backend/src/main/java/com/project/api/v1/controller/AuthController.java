@@ -2,6 +2,7 @@ package com.project.api.v1.controller;
 
 
 import com.project.api.v1.model.dto.OtpVerificationRequest;
+import com.project.api.vi.model.dto.CreatePasswordRequest;
 import com.project.api.v1.model.dto.TokenPair;
 import com.project.api.v1.service.OtpService;
 import io.quarkus.logging.Log;
@@ -23,6 +24,9 @@ public class AuthController {
     @Inject
     OtpService otpService;
 
+    @Inject
+    UserPasswordService userPasswordService;
+
 
     @POST
     @Path("/verifyotp")
@@ -31,5 +35,12 @@ public class AuthController {
         TokenPair tokenPair = otpService.VerifyOtp(request);
         Log.infof("Otp verification response: %s", tokenPair);
         return Response.status(Response.Status.OK).entity(tokenPair).build();
+    }
+
+    @POST
+    @Path("/create/password")
+    public Response CreatePassword(@Valid CreatePasswordRequest request) {
+        Log.infof("Creating a password");
+
     }
 }
